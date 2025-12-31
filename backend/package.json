@@ -1,11 +1,13 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "cd ../frontend ; npm install ; npm run build",
+    "heroku-postbuild": "cd ../frontend ; npm install ; npm run build"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +18,12 @@
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "mongoose": "^9.0.2",
-    "nanoid": "^5.1.6",
+    "nanoid": "^5.1.6"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.11"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

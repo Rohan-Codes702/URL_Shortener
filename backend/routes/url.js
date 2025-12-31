@@ -29,10 +29,12 @@ router.post("/shorten",async(req,res)=>{
             shortId,originalUrl
         });
 
+        const base = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
+
         res.json({
-            shortId:url.shortId,
-            shortUrl:`${process.env.Base_URL}/${url.shortId}`
-        })
+            shortId: url.shortId,
+            shortUrl: `${base.replace(/\/$/, '')}/${url.shortId}`,
+        });
 
     } catch (error) {
         res.status(500).json({error:"Server error"})
